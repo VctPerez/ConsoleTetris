@@ -2,14 +2,18 @@
 //
 
 #include <iostream>
+#include <unistd.h>
 #include "Tetris.hpp"
 
 int main()
 {
     Tetris t;
     if(t.start()){
-        t.clearScreen();
-        t.drawBoard();
+        while(1){
+            t.clearScreen();
+            t.drawBoard();
+            usleep(1000000);
+        }
     }
     return 0;
 }
