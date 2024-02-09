@@ -6,5 +6,8 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Tetris t;
+    t.clearScreen();
+    t.drawBoard();
+    return 0;
 }

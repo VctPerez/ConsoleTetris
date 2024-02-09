@@ -1,5 +1,5 @@
-#ifndef TETRIS
-#define TETRIS
+#ifndef TETRIS_H_
+#define TETRIS_H_
 
 class Block {
 private:
@@ -209,9 +209,24 @@ public:
 
 class Tetris {
 private:
-	char board[20][10];
+	char board[20][30];
+	int score;
 
 public:
+
+	Tetris(){
+		for(int i = 0; i < 20 ; i++){
+			for(int j = 0; j < 30; j++){
+				board[i][j] = ' ';
+			}
+		}
+		score = 0;
+		// for(int i = 0; i < 20 ; i++){
+		// 	for(int j = 0; j < 15; j++){
+		// 		std::cout <<i << "," <<j<< " = "<<board[i][j];
+		// 	}
+		// }
+	};
 
 	void start();
 	void stop();
@@ -228,4 +243,4 @@ public:
 
 };
 
-#endif // !TETRIS
+#endif /* TETRIS_H_ */

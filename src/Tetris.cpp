@@ -13,15 +13,22 @@ void Tetris::stop(){
 }
 
 void Tetris::drawBoard(){
+    std::cout << "Score: " << score<<std::endl;
+    std::cout << "-------------------------------" << std::endl;
     for (int i = 0; i < 20; i++){
-        for(int j = 0; j < 10; j++){
-            if(board[i][j] == ' '){
+        for(int j = 0; j < 32; j++){
+            if(j == 0 || j == 31) std::cout<<"|";
+            else{
+                if(board[i][j-1] == ' '){
                 std::cout << " ";
-            }else{
-                std::cout << "■";
-            }
+                }else{
+                    std::cout << "■";
+                }
+            } 
         }
+        std::cout<<std::endl;
     }
+    std::cout << "-------------------------------";
 }
 
 
