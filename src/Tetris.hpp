@@ -211,6 +211,7 @@ class Tetris {
 private:
 	char board[20][30];
 	int score;
+	bool inGame;
 
 public:
 
@@ -221,6 +222,7 @@ public:
 			}
 		}
 		score = 0;
+		inGame = false;
 		// for(int i = 0; i < 20 ; i++){
 		// 	for(int j = 0; j < 15; j++){
 		// 		std::cout <<i << "," <<j<< " = "<<board[i][j];
@@ -228,7 +230,7 @@ public:
 		// }
 	};
 
-	void start();
+	bool start();
 	void stop();
 
 	void drawBoard();

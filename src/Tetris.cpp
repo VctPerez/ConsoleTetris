@@ -2,9 +2,17 @@
 #include <stdlib.h>
 #include "Tetris.hpp"
 
-void Tetris::start(){
+bool Tetris::start(){
     // TO-DO
-    std::cout << "hola";
+    char response;
+    do{
+    clearScreen();
+    std::cout << "Do you want to start a new game? (y/n)";
+    std::cin >> response;
+    }while(response != 'y' && response != 'Y' && response != 'n' && response != 'N');
+    
+    if(response == 'y' ||response == 'Y') return true;
+    else return false;
 }
 
 void Tetris::stop(){
@@ -33,7 +41,6 @@ void Tetris::drawBoard(){
 
 
 void Tetris::clearScreen(){
-    // TO-DO
     system("cls");
 }
 

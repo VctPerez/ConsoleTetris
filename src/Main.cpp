@@ -7,7 +7,9 @@
 int main()
 {
     Tetris t;
-    t.clearScreen();
-    t.drawBoard();
+    if(t.start()){
+        t.clearScreen();
+        t.drawBoard();
+    }
     return 0;
 }
