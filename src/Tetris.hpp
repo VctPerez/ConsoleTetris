@@ -230,6 +230,7 @@ public:
 		// }
 	};
 
+	bool getGameStatus(){return inGame;};
 	bool start();
 	void stop();
 
@@ -241,7 +242,6 @@ public:
 	void moveBlock();
 
 	bool isCollide();
-	bool isGameOver();
 
 };
 

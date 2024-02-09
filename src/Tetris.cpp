@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 #include <stdlib.h>
 #include "Tetris.hpp"
 
@@ -11,7 +12,10 @@ bool Tetris::start(){
     std::cin >> response;
     }while(response != 'y' && response != 'Y' && response != 'n' && response != 'N');
     
-    if(response == 'y' ||response == 'Y') return true;
+    if(response == 'y' ||response == 'Y'){
+        inGame = true;
+        return true;
+    } 
     else return false;
 }
 
@@ -36,7 +40,7 @@ void Tetris::drawBoard(){
         }
         std::cout<<std::endl;
     }
-    std::cout << "-------------------------------";
+    std::cout << "-------------------------------" << std::endl;
 }
 
 
@@ -46,7 +50,21 @@ void Tetris::clearScreen(){
 
 void Tetris::checkInputs(){
     // TO-DO
-    std::cout << "inputs";
+    char keyInput;
+    if(kbhit()){
+        keyInput = getch();
+
+        switch (keyInput)
+        {
+        case 'p':
+            inGame = false;
+            break;
+        
+        default:
+            break;
+        }
+    }
+
 }
 
 void Tetris::rotateBlock(){
@@ -62,10 +80,5 @@ void Tetris::moveBlock(){
 bool Tetris::isCollide(){
     //TO-DO
     return true;
-}
-
-bool Tetris::isGameOver(){
-    //TO-DO
-    return false;
 }
 
