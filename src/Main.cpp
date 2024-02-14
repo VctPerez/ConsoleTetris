@@ -5,6 +5,7 @@
 #include <thread>
 #include <ncurses.h>
 #include <unistd.h>
+#include "Board.hpp"
 #include "Tetris.hpp"
 
 const int BOARD_SIZE = 30;
@@ -16,7 +17,8 @@ void gameOver(){
 }
 
 int main()
-{
+{   
+    curs_set(0);
     /*
     if(t.start()){
         while(t.getGameStatus()){
@@ -28,13 +30,18 @@ int main()
         gameOver();
     }*/
     initscr();
-
     refresh();
 
-    Board board = Board(BOARD_SIZE);
-    board.initializeBoard();
+    Tetris game(BOARD_SIZE, BOARD_SIZE);
+    while(!game.isGameOver()){
+        game.proccessInput();
 
-    getch();
+        game.update();
+
+        game.redraw();
+    }
+
+    getchar();
     endwin();
 
     return 0;
