@@ -1,6 +1,9 @@
 #ifndef TETRIS_H_
 #define TETRIS_H_
 
+#include <ncurses.h>
+#include <iostream>
+
 class Block {
 private:
 	char blocks[7 /* 7 kinds of blocks*/][4 /* 4 rotations */][4 /* horizontal pixels */][4 /* vertical pixels */] =
@@ -207,15 +210,16 @@ public:
 	}
 };
 
-class Tetris {
+class Board {
 private:
 	char board[20][30];
 	int score;
 	bool inGame;
+	WINDOW * boardWindow;
 
 public:
 
-	Tetris(){
+	Board(int board_size){
 		for(int i = 0; i < 20 ; i++){
 			for(int j = 0; j < 30; j++){
 				board[i][j] = ' ';
@@ -223,25 +227,45 @@ public:
 		}
 		score = 0;
 		inGame = false;
-		// for(int i = 0; i < 20 ; i++){
-		// 	for(int j = 0; j < 15; j++){
-		// 		std::cout <<i << "," <<j<< " = "<<board[i][j];
-		// 	}
-		// }
+
+		int yMax, xMax;
+
+		getmaxyx(stdscr, yMax, xMax);
+
+		boardWindow = newwin(board_size, board_size, yMax/2 - board_size/2, xMax/2 - board_size/2);
 	};
 
 	bool getGameStatus(){return inGame;};
 	bool start();
 	void stop();
 
-	void drawBoard(int board_size);
-	void clearScreen();
-	
-	void checkInputs();
-	void rotateBlock();
-	void moveBlock();
+	void addBoardBorder(){
+		box(boardWindow,0,0);
+	}
 
-	bool isCollide();
+	void clearBoard(){
+		wclear(boardWindow);
+		addBoardBorder();
+
+	}
+
+	void refreshBoard(){
+		wrefresh(boardWindow);
+	}
+
+	void initializeBoard(){
+		clearBoard();
+		refreshBoard();
+	}
+
+	void addAt(int x, int y, chtype ch){
+		mvwaddch(boardWindow, y, x, ch);
+	}
+
+	chtype getInput(){
+		return wgetch(boardWindow);
+	}
+
 
 };
 

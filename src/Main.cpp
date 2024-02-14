@@ -9,10 +9,6 @@
 
 const int BOARD_SIZE = 30;
 
-void checkInputs(Tetris t){
-    t.checkInputs();
-}
-
 void gameOver(){
     std::cout<<"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"<<std::endl;
     std::cout<<"~~~~~~~~~~ GAME OVER ~~~~~~~~~~"<<std::endl;
@@ -21,7 +17,6 @@ void gameOver(){
 
 int main()
 {
-    Tetris t;
     /*
     if(t.start()){
         while(t.getGameStatus()){
@@ -36,7 +31,8 @@ int main()
 
     refresh();
 
-    t.drawBoard(BOARD_SIZE);
+    Board board = Board(BOARD_SIZE);
+    board.initializeBoard();
 
     getch();
     endwin();
