@@ -1,5 +1,5 @@
 #include <iostream>
-#include <conio.h>
+#include <ncurses.h>
 #include <stdlib.h>
 #include "Tetris.hpp"
 
@@ -24,23 +24,16 @@ void Tetris::stop(){
     std::cout << "chao pescao";
 }
 
-void Tetris::drawBoard(){
-    std::cout << "Score: " << score<<std::endl;
-    std::cout << "-------------------------------" << std::endl;
-    for (int i = 0; i < 20; i++){
-        for(int j = 0; j < 32; j++){
-            if(j == 0 || j == 31) std::cout<<"|";
-            else{
-                if(board[i][j-1] == ' '){
-                std::cout << " ";
-                }else{
-                    std::cout << "■";
-                }
-            } 
-        }
-        std::cout<<std::endl;
-    }
-    std::cout << "-------------------------------" << std::endl;
+void Tetris::drawBoard(int board_size){
+    
+    int yMax, xMax;
+    getmaxyx(stdscr, yMax, xMax);
+
+    WINDOW * boardWin = newwin(board_size, board_size, (yMax/2) - board_size/2, (xMax / 2) - board_size/2);
+    box(boardWin, 0, 0);
+    wrefresh(boardWin);
+    
+
 }
 
 
@@ -51,7 +44,7 @@ void Tetris::clearScreen(){
 void Tetris::checkInputs(){
     // TO-DO
     char keyInput;
-    if(kbhit()){
+    if(getch()){
         keyInput = getch();
 
         switch (keyInput)

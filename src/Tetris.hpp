@@ -234,7 +234,7 @@ public:
 	bool start();
 	void stop();
 
-	void drawBoard();
+	void drawBoard(int board_size);
 	void clearScreen();
 	
 	void checkInputs();

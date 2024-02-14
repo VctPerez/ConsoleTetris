@@ -3,8 +3,11 @@
 
 #include <iostream>
 #include <thread>
+#include <ncurses.h>
 #include <unistd.h>
 #include "Tetris.hpp"
+
+const int BOARD_SIZE = 30;
 
 void checkInputs(Tetris t){
     t.checkInputs();
@@ -19,6 +22,7 @@ void gameOver(){
 int main()
 {
     Tetris t;
+    /*
     if(t.start()){
         while(t.getGameStatus()){
             t.checkInputs();
@@ -27,7 +31,15 @@ int main()
             usleep(200000);
         }
         gameOver();
-    }
+    }*/
+    initscr();
+
+    refresh();
+
+    t.drawBoard(BOARD_SIZE);
+
+    getch();
+    endwin();
 
     return 0;
 }
