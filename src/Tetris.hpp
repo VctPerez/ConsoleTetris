@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Board.hpp"
 #include "Drawable.hpp"
+#include "Block.hpp"
 
 class Tetris{
 private:
@@ -25,7 +26,13 @@ public:
     }
 
     void update(){
-        board.addDrawable(Drawable(3,3,'#'));
+        //board.addDrawable(Drawable(0,0,'@'));
+
+        Block square = Square_Block(3,3,'#');
+        //square.createBlock(3,3,'#');
+        for(int i = 0; i < 4; i++){
+            board.addDrawable(square.getDrawables()[i]);
+        }
     }
 
     void redraw(){

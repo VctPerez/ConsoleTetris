@@ -18,22 +18,14 @@ void gameOver(){
 
 int main()
 {   
-    curs_set(0);
-    /*
-    if(t.start()){
-        while(t.getGameStatus()){
-            t.checkInputs();
-            t.clearScreen();
-            t.drawBoard();
-            usleep(200000);
-        }
-        gameOver();
-    }*/
     initscr();
+    curs_set(0); //MAKES THE CURSOR INVISIBLE
     refresh();
 
     Tetris game(BOARD_SIZE, BOARD_SIZE);
     while(!game.isGameOver()){
+        noecho(); //STOPS THE OUTPUT OF THE KEYINPUTS
+
         game.proccessInput();
 
         game.update();

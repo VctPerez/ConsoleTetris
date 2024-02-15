@@ -10,6 +10,13 @@ protected:
     chtype sprite;
 
 public:
+
+    Drawable(){
+        x = -1;
+        y = -1;
+        sprite = ' ';
+    }
+
     Drawable(int x, int y, chtype sprite){
         this->x = x;
         this->y = y;

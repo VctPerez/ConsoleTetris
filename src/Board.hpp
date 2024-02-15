@@ -5,223 +5,14 @@
 #include <iostream>
 #include "Drawable.hpp"
 
-class Block {
-private:
-	char blocks[7 /* 7 kinds of blocks*/][4 /* 4 rotations */][4 /* horizontal pixels */][4 /* vertical pixels */] =
-	{
-		// SQUARE
-		{
-			{
-				{0,0,0,0},
-				{0,1,1,0},
-				{0,1,1,0},
-				{0,0,0,0},
-			},
-			{
-				{0,0,0,0},
-				{0,1,1,0},
-				{0,1,1,0},
-				{0,0,0,0},
-			},
-			{
-				{0,0,0,0},
-				{0,1,1,0},
-				{0,1,1,0},
-				{0,0,0,0},
-			},
-			{
-				{0,0,0,0},
-				{0,1,1,0},
-				{0,1,1,0},
-				{0,0,0,0},
-			},
-		},
-
-		// I
-		{
-			{
-				{0,0,0,0},
-				{1,1,1,1},
-				{0,0,0,0},
-				{0,0,0,0},
-			},
-			{
-				{0,1,0,0},
-				{0,1,0,0},
-				{0,1,0,0},
-				{0,1,0,0},
-			},
-			{
-				{0,0,0,0},
-				{1,1,1,1},
-				{0,0,0,0},
-				{0,0,0,0},
-			},
-			{
-				{0,1,0,0},
-				{0,1,0,0},
-				{0,1,0,0},
-				{0,1,0,0},
-			},
-		},
-
-		// L
-		{
-			{
-				{0,0,1,0},
-				{1,1,1,0},
-				{0,0,0,0},
-				{0,0,0,0},
-			},
-			{
-				{0,1,0,0},
-				{0,1,0,0},
-				{0,1,1,0},
-				{0,0,0,0},
-			},
-			{
-				{0,0,0,0},
-				{1,1,1,0},
-				{1,0,0,0},
-				{0,0,0,0},
-			},
-			{
-				{1,1,0,0},
-				{0,1,0,0},
-				{0,1,0,0},
-				{0,0,0,0},
-			},
-		},
-
-		// L MIRRORED
-		{
-			{
-				{1,0,0,0},
-				{1,1,1,0},
-				{0,0,0,0},
-				{0,0,0,0},
-			},
-			{
-				{0,1,0,0},
-				{0,1,0,0},
-				{1,1,0,0},
-				{0,0,0,0},
-			},
-			{
-				{0,0,0,0},
-				{1,1,1,0},
-				{0,0,1,0},
-				{0,0,0,0},
-			},
-			{
-				{0,1,1,0},
-				{0,1,0,0},
-				{0,1,0,0},
-				{0,0,0,0},
-			},
-		},
-
-		// T 
-		{
-			{
-				{0,1,0,0},
-				{0,1,1,0},
-				{0,1,0,0},
-				{0,0,0,0},
-			},
-			{
-				{0,1,0,0},
-				{1,1,1,0},
-				{0,0,0,0},
-				{0,0,0,0},
-			},
-			{
-				{0,1,0,0},
-				{1,1,0,0},
-				{0,1,0,0},
-				{0,0,0,0},
-			},
-			{
-				{0,0,0,0},
-				{1,1,1,0},
-				{0,1,0,0},
-				{0,0,0,0},
-			},
-		},
-
-		// Z MIRRORED
-		{
-			{
-				{0,1,0,0},
-				{0,1,1,0},
-				{0,0,1,0},
-				{0,0,0,0},
-			},
-			{
-				{0,0,0,0},
-				{0,1,1,0},
-				{1,1,0,0},
-				{0,0,0,0},
-			},
-			{
-				{1,0,0,0},
-				{1,1,0,0},
-				{0,1,0,0},
-				{0,0,0,0},
-			},
-			{
-				{0,1,1,0},
-				{1,1,0,0},
-				{0,0,0,0},
-				{0,0,0,0},
-			}, 
-		},
-
-		// Z 
-		{
-			{
-				{0,0,1,0},
-				{0,1,1,0},
-				{0,1,0,0},
-				{0,0,0,0},
-			},
-			{
-				{0,0,0,0},
-				{1,1,0,0},
-				{0,1,1,0},
-				{0,0,0,0},
-			},
-			{
-				{0,1,0,0},
-				{1,1,0,0},
-				{1,0,0,0},
-				{0,0,0,0},
-			},
-			{
-				{1,1,0,0},
-				{0,1,1,0},
-				{0,0,0,0},
-				{0,0,0,0},
-			},
-		}
-	};
-public:
-	void getBlock(int type, int rotation, char block[4][4]) {
-		 block = blocks[type][rotation];
-	}
-};
-
 class Board {
 private:
-	char board[20][30];
 	WINDOW * boardWindow;
 
+	/*
+		METHOD TO CREATE THE BOARD
+	*/
 	void createBoard(int board_height, int board_width){
-		for(int i = 0; i < 20 ; i++){
-			for(int j = 0; j < 30; j++){
-				board[i][j] = ' ';
-			}
-		}
 
 		int yMax, xMax;
 
@@ -240,20 +31,32 @@ public:
 		createBoard(board_height, board_width);
 	}
 
+	/*
+		PAINTS THE BORDERS OF THE BOARD
+	*/
 	void addBoardBorder(){
 		box(boardWindow,0,0);
 	}
 
+	/*
+		CLEANS THE BOARD
+	*/
 	void clearBoard(){
 		wclear(boardWindow);
 		addBoardBorder();
 
 	}
 
+	/*
+		REFRESH THE BOARD OUTPUT
+	*/
 	void refreshBoard(){
 		wrefresh(boardWindow);
 	}
 
+	/*
+		ESTABLISHES THE EMPTY BOARD
+	*/
 	void initializeBoard(){
 		clearBoard();
 		refreshBoard();
@@ -263,19 +66,24 @@ public:
 	 * 	Adds the drawable in the board
 	 */
 	void addDrawable(Drawable drawable){
-		addAt(drawable.getX(), drawable.getY(), drawable.getSprite());
+		addCharAt(drawable.getX(), drawable.getY(), drawable.getSprite());
 	}	
 	
 	/**
 	 * Adds the character "ch" in the board at the (x,y) position.
 	 */
-	void addAt(int x, int y, chtype ch){
+	void addCharAt(int x, int y, chtype ch){
 		mvwaddch(boardWindow, y, x, ch);
 		refreshBoard();
 	}
 
 	chtype getInput(){
+		nodelay(stdscr, TRUE);
 		return wgetch(boardWindow);
+	}
+	
+	WINDOW * getBoardWindow(){
+		return boardWindow;
 	}
 
 
