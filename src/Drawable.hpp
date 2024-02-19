@@ -31,6 +31,14 @@ public:
         return y;
     }
 
+    void setX(int new_x){
+        this->x = new_x;
+    }
+
+    void setY(int new_y){
+        this->y = new_y;
+    }
+
 
     chtype getSprite(){
         return sprite;

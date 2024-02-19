@@ -29,6 +29,7 @@ public:
 
 	Board(int board_height, int board_width){
 		createBoard(board_height, board_width);
+		keypad(boardWindow, true);
 	}
 
 	/*

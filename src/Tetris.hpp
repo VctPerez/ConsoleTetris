@@ -10,7 +10,19 @@
 class Tetris{
 private:
     Board board;
+    Block currentBlock;
     bool gameOver;
+
+    void clearBlock(){
+        for(int i = 0; i < 4; i++){
+            Drawable d = currentBlock.getDrawables()[i];
+            board.addCharAt(d.getX(), d.getY(), ' ');
+        }
+    }
+    
+    WINDOW * gameWindow(){
+        return board.getBoardWindow();
+    }
 
 public:
 
@@ -18,24 +30,44 @@ public:
         board = Board(height, width);
         board.initializeBoard();
         gameOver = false;
+        currentBlock = Square_Block(3,3);
     }
 
     void proccessInput(){   
         chtype input = board.getInput();
+        switch (input)
+        {
+        case KEY_RIGHT:
+            clearBlock();
+            currentBlock.moveX(1);
+            break;
+        
+        case KEY_LEFT:
+            clearBlock();
+            currentBlock.moveX(-1);
+            /*code move left*/
+            break;
+
+        case KEY_UP:
+            
+            /*code rotate*/
+            break;
+
+        default:
+            clearBlock();
+            break;
+        }
 
     }
 
     void update(){
-        //board.addDrawable(Drawable(0,0,'@'));
-
-        Block square = Square_Block(3,3,'#');
-        //square.createBlock(3,3,'#');
         for(int i = 0; i < 4; i++){
-            board.addDrawable(square.getDrawables()[i]);
+            board.addDrawable(currentBlock.getDrawables()[i]);
         }
     }
 
     void redraw(){
+        //board.clearBoard();
         board.refreshBoard();
     }
 
