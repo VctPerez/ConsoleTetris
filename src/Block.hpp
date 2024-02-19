@@ -97,9 +97,9 @@ public:
     }
 
     void createBlock(int x, int y){
-        drawables[0] = Drawable(x, y, sprite);
-        drawables[1] = Drawable(x, y - 1 , sprite);
-        drawables[2] = Drawable(x - 1, y - 1, sprite);
+        drawables[0] = Drawable(x - 1, y - 1, sprite);
+        drawables[1] = Drawable(x, y, sprite);
+        drawables[2] = Drawable(x, y - 1 , sprite);
         drawables[3] = Drawable(x + 1, y, sprite);
     }
 };
@@ -127,10 +127,10 @@ public:
     }
 
     void createBlock(int x, int y){
-        drawables[0] = Drawable(x, y, sprite);
-        drawables[1] = Drawable(x - 1, y, sprite);
-        drawables[2] = Drawable(x  + 1, y, sprite);
-        drawables[3] = Drawable(x, y - 1, sprite);
+        drawables[0] = Drawable(x - 1, y, sprite);
+        drawables[1] = Drawable(x, y, sprite);
+        drawables[2] = Drawable(x, y - 1, sprite);
+        drawables[3] = Drawable(x  + 1, y, sprite);
     }
 };
 
