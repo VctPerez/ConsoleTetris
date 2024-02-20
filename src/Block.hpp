@@ -11,7 +11,7 @@ protected:
 
 public:
 
-    Block(){};
+    Block(){sprite = '#';};
 
     void createBlock(int x, int y);
 
@@ -25,12 +25,17 @@ public:
         }
     }
 
+    void moveDown(){
+        for(int i = 0; i < 4; i++){
+            drawables[i].setY(drawables[i].getY() + 1);
+        }
+    }
+
 };
 
 class Square_Block : public Block{
 public:
     Square_Block(int x, int y) : Block(){
-        sprite = '#';
         createBlock(x, y);
     };
 
@@ -47,7 +52,7 @@ public:
 class L_Block : public Block{
 public:
     L_Block(int x, int y) : Block(){
-        sprite = '%';
+        //sprite = '%';
         createBlock(x, y);
     }
 
@@ -62,7 +67,7 @@ public:
 class L_Mirrored_Block : public Block{
 public:
     L_Mirrored_Block(int x, int y) : Block(){
-        sprite = '%';
+        //sprite = '%';
         createBlock(x, y);
     }
 
@@ -92,7 +97,7 @@ public:
 class Z_Block : public Block{
 public:
     Z_Block(int x, int y) : Block(){
-        sprite = 'Z';
+        //sprite = 'Z';
         createBlock(x, y);
     }
 
@@ -107,7 +112,7 @@ public:
 class Z_Mirrored_Block : public Block{
 public:
     Z_Mirrored_Block(int x, int y) : Block(){
-        sprite = 'Z';
+        //sprite = 'Z';
         createBlock(x, y);
     }
 
@@ -122,7 +127,7 @@ public:
 class T_Block : public Block{
 public:
     T_Block(int x, int y) : Block(){
-        sprite = '=';
+        //sprite = '=';
         createBlock(x, y);
     }
 

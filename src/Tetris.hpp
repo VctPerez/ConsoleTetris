@@ -74,6 +74,21 @@ private:
         return res;
     }
 
+    void drawBlock(){
+        for(int i = 0; i < 4; i++){
+            board.addDrawable(currentBlock.getDrawables()[i]);
+        }
+        redraw();
+    }
+
+    bool isCollidedRightSide(Drawable d){
+        return d.getX() == dimension - 2;
+    }
+
+    bool isCollidedLeftSide(Drawable d){
+        return d.getX() == 1;
+    }
+
 public:
 
     Tetris(int height, int width){
@@ -89,16 +104,18 @@ public:
         switch (input)
         {
         case KEY_RIGHT:
-            if(currentBlock.getDrawables()[3].getX() < dimension - 2){
+            if(!isCollidedRightSide(currentBlock.getDrawables()[3])){
                 clearBlock();
                 currentBlock.moveX(1);
+                drawBlock();
             }
             break;
         
         case KEY_LEFT:
-            if(currentBlock.getDrawables()[0].getX() > 1){
+            if(!isCollidedLeftSide(currentBlock.getDrawables()[0])){
                 clearBlock();
                 currentBlock.moveX(-1);
+                drawBlock();
             }
             /*code move left*/
             break;
@@ -116,9 +133,14 @@ public:
     }
 
     void update(){
-        for(int i = 0; i < 4; i++){
-            board.addDrawable(currentBlock.getDrawables()[i]);
-        }
+        
+        //moveDownBlock();
+    }
+
+    void moveDownBlock(){
+        clearBlock();
+        currentBlock.moveDown();
+        drawBlock();
     }
 
     void redraw(){

@@ -74,7 +74,7 @@ public:
 	 * Adds the character "ch" in the board at the (x,y) position.
 	 */
 	void addCharAt(int x, int y, chtype ch){
-		mvwaddch(boardWindow, y, x, ch);
+		if(y != 0) mvwaddch(boardWindow, y, x, ch);
 		refreshBoard();
 	}
 
