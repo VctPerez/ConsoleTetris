@@ -3,7 +3,6 @@
 
 #include <ncurses.h>
 #include <iostream>
-#include "Kbhit.hpp"
 #include <cstdlib>
 #include "Board.hpp"
 #include "Drawable.hpp"
@@ -89,6 +88,10 @@ private:
     bool isCollidedLeftSide(Drawable d){
         return d.getX() == 1;
     }
+    
+    bool isCollidedDownSide(Drawable d){
+        return d.getY() == dimension - 2;
+    }
 
 public:
 
@@ -137,7 +140,7 @@ public:
 
     void update(){
         
-        moveDownBlock();
+        if(!isCollidedDownSide(currentBlock.getDrawables()[0])) moveDownBlock();
     }
 
     void moveDownBlock(){

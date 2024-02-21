@@ -19,7 +19,6 @@ int main()
 
     Tetris game(BOARD_SIZE, BOARD_SIZE);
     while(!game.isGameOver()){
-        
 
         game.proccessInput();
 
@@ -27,7 +26,7 @@ int main()
 
         game.redraw();
 
-        usleep(200000);
+        usleep(100000);
         
     }
 
