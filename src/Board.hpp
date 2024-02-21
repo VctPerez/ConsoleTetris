@@ -2,7 +2,6 @@
 #define BOARD_H_
 
 #include <ncurses.h>
-#include <iostream>
 #include "Drawable.hpp"
 
 class Board {
@@ -19,6 +18,7 @@ private:
 		getmaxyx(stdscr, yMax, xMax);
 
 		boardWindow = newwin(board_height, board_width, yMax/2 - board_height/2, xMax/2 - board_width/2);
+		keypad(boardWindow, TRUE);
 	}
 
 public:
@@ -29,7 +29,6 @@ public:
 
 	Board(int board_height, int board_width){
 		createBoard(board_height, board_width);
-		keypad(boardWindow, true);
 	}
 
 	/*
@@ -79,7 +78,7 @@ public:
 	}
 
 	chtype getInput(){
-		nodelay(stdscr, TRUE);
+		//nodelay(stdscr, TRUE);
 		return wgetch(boardWindow);
 	}
 	

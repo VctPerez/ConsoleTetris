@@ -3,6 +3,7 @@
 
 #include <ncurses.h>
 #include <iostream>
+#include "Kbhit.hpp"
 #include <cstdlib>
 #include "Board.hpp"
 #include "Drawable.hpp"
@@ -100,7 +101,10 @@ public:
     }
 
     void proccessInput(){   
-        chtype input = board.getInput();
+        chtype input = ' ';
+        wtimeout(gameWindow(), 3);
+        input = board.getInput();
+
         switch (input)
         {
         case KEY_RIGHT:
@@ -126,7 +130,6 @@ public:
             break;
 
         default:
-            clearBlock();
             break;
         }
 
@@ -134,7 +137,7 @@ public:
 
     void update(){
         
-        //moveDownBlock();
+        moveDownBlock();
     }
 
     void moveDownBlock(){

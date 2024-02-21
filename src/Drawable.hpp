@@ -1,7 +1,6 @@
 #ifndef DRAWABLE_H_
 #define DRAWABLE_H_
 
-#include <iostream>
 #include <ncurses.h>
 
 class Drawable{
