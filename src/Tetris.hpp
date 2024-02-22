@@ -19,6 +19,7 @@ private:
         for(int i = 0; i < 4; i++){
             Drawable d = currentBlock.getDrawables()[i];
             board.addCharAt(d.getX(), d.getY(), ' ');
+            board.getMatrixBoard()[d.getY() * 10 + d.getX()] = ' ';
         }
     }
 
@@ -90,7 +91,11 @@ private:
     }
     
     bool isCollidedDownSide(Drawable d){
-        return d.getY() == dimension - 2;
+        return d.getY() == dimension - 2 || isCollidedWithPiece();
+    }
+
+    bool isCollidedWithPiece(){
+        return false;
     }
 
 public:
@@ -140,7 +145,8 @@ public:
 
     void update(){
         
-        if(!isCollidedDownSide(currentBlock.getDrawables()[0])) moveDownBlock();
+        if(!isCollidedDownSide(currentBlock.getDownDrawable())) moveDownBlock();
+        else currentBlock = generateRandomBlock();
     }
 
     void moveDownBlock(){

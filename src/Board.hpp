@@ -3,15 +3,18 @@
 
 #include <ncurses.h>
 #include "Drawable.hpp"
+#include <vector>
 
 class Board {
 private:
 	WINDOW * boardWindow;
-
+	char * matrixBoard;
 	/*
 		METHOD TO CREATE THE BOARD
 	*/
 	void createBoard(int board_height, int board_width){
+
+		matrixBoard = new char[board_height * board_width];
 
 		int yMax, xMax;
 
@@ -74,6 +77,7 @@ public:
 	 */
 	void addCharAt(int x, int y, chtype ch){
 		if(y != 0) mvwaddch(boardWindow, y, x, ch);
+		matrixBoard[y*10 + x] = ch;
 		refreshBoard();
 	}
 
@@ -84,6 +88,10 @@ public:
 	
 	WINDOW * getBoardWindow(){
 		return boardWindow;
+	}
+
+	char * getMatrixBoard(){
+		return matrixBoard;
 	}
 
 

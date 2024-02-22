@@ -31,6 +31,16 @@ public:
         }
     }
 
+    Drawable getDownDrawable(){
+        Drawable min = drawables[0];
+        for(int i = 1; i < 4; i++){
+            if(min.getY() < drawables[i].getY()) min = drawables[i];
+        }
+        return min;
+    }
+
+
+
 };
 
 class Square_Block : public Block{
@@ -102,10 +112,10 @@ public:
     }
 
     void createBlock(int x, int y){
-        drawables[0] = Drawable(x - 1, y - 1, sprite);
-        drawables[1] = Drawable(x, y, sprite);
-        drawables[2] = Drawable(x, y - 1 , sprite);
-        drawables[3] = Drawable(x + 1, y, sprite);
+        drawables[0] = Drawable(x, y - 1, sprite);
+        drawables[1] = Drawable(x + 1, y, sprite);
+        drawables[2] = Drawable(x + 1, y - 1 , sprite);
+        drawables[3] = Drawable(x + 2, y, sprite);
     }
 };
 
